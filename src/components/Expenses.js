@@ -1,8 +1,13 @@
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
+import ExpensesFilter from "./New Expense/ExpenseFilter";
 
 function Expenses(props) {
+  const YearChangeSave = event => console.log(event);
+  
   return (
+    <>
+    <ExpensesFilter onYearChange={YearChangeSave} />
     <div className="expenses">
       <ExpenseItem
         title={props.items[0].title}
@@ -28,6 +33,7 @@ function Expenses(props) {
         date={props.items[3].date}
       ></ExpenseItem>
     </div>
+    </>
   );
 }
 export default Expenses;
