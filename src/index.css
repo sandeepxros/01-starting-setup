@@ -14,3 +14,20 @@ body {
   color: #fff;
 }
 
+
+.data-save {
+  position: absolute;
+  transition: ease-in-out;
+  background-color: black;
+  color: white;
+  top: 0;
+  left: 50%;
+}
+.data-save-none {
+  position: absolute;
+  transition: 1s ease-in-out;
+  background-color: black;
+  color: white;
+  top: -10%;
+  left: 50%;
+}

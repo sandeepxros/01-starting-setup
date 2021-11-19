@@ -7,6 +7,8 @@ const ExpenseForm = (props) => {
   const [amountChange, setAmountChange] = useState("");
   const [dateChange, setDateChange] = useState("");
 
+  const [saveChange, setSave] = useState("data-save-none");
+
   const titleChangeHandler = (event) => setTitleChange(event.target.value);
 
   const amountChangeHandler = (event) => setAmountChange(event.target.value);
@@ -25,8 +27,10 @@ const ExpenseForm = (props) => {
     setAmountChange("");
     setDateChange("");
     props.onSaveExpenseDate(ExpenseData);
-
+    setSave("data-save");
+    setTimeout(() => setSave("data-save-none"), 2000);
   };
+
   return (
     <form onSubmit={formSubmitHandler}>
       <div className="new-expense__controls">
@@ -36,6 +40,7 @@ const ExpenseForm = (props) => {
             type="text"
             value={titleChange}
             onChange={titleChangeHandler}
+            required
           />
         </div>
 
@@ -47,6 +52,7 @@ const ExpenseForm = (props) => {
             min="0.1"
             step="0.01"
             onChange={amountChangeHandler}
+            required
           />
         </div>
 
@@ -58,10 +64,12 @@ const ExpenseForm = (props) => {
             min="2019-12-1"
             max="2022-12-1"
             onChange={DateChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__actions">
           <button type="submit">Submit</button>
+          <p className={saveChange}>Data Saved SuccessFully!!!</p>
         </div>
       </div>
     </form>

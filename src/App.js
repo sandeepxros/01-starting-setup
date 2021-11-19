@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Expenses from "./components/Expenses";
 import NewExpense from "./components/New Expense/NewExpense";
+import "./index.css";
 
 const DUMMY_DATA = [
   {
@@ -26,14 +27,25 @@ const DUMMY_DATA = [
 
 function App() {
   const [expenses, setExpense] = useState(DUMMY_DATA);
+  const [saveChange, setSave] = useState("data-save-none");
+ // const [deleteElement, setDeleteElement] = useState("");
+   
+
   const addExpenseHandler = expenseData =>{
     setExpense(prevExpense=>{
       return [expenseData, ...prevExpense]
     })
   }
+  const removeHandler = id => {
+     setExpense(expenses.filter(expense => expense.id!==id));
+     setSave("data-save");
+     setTimeout(() => setSave("data-save-none"), 2000);
+  };
+
   return (<div>
     <NewExpense onAddNewExpense = {addExpenseHandler}/>
-    <Expenses items={expenses} />
+    <Expenses items={expenses} onRemove={removeHandler} />
+    <p className={saveChange}>Data Deleted SuccessFully!!!</p>
   </div>)
 
 
